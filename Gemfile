@@ -4,6 +4,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
+gem 'puma'
 gem 'rails', '4.2.1'
 gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0'
