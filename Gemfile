@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-c3'
+end
+
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'mem'
 gem 'pg'
 gem 'puma'
 gem 'rails', '4.2.1'

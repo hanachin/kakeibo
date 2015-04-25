@@ -1,0 +1,38 @@
+#chart
+
+javascript:
+  var dailyBalanceHistory = #{@bank_account.daily_balance_history.to_json.html_safe};
+coffee:
+  chart = c3.generate
+    bindto: '#chart'
+    data:
+      json: dailyBalanceHistory
+      keys:
+        value: ['amount']
+        x: 'date'
+    size:
+      height: 720
+    grid:
+      x:
+        show: false
+      y:
+        show: true
+    point:
+      show: false
+    regions: [
+      {start: '2012-01-01', end: '2012-12-31'},
+      {start: '2014-01-01', end: '2014-12-31'},
+    ]
+    axis:
+      y:
+        label: '残高'
+        tick:
+          format: d3.format(',')
+        padding:
+          bottom: 0
+      x:
+        label: '日時'
+        type: 'timeseries'
+        tick:
+          rotate: 90
+          format: '%Y-%m-%d'
