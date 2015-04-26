@@ -1,10 +1,10 @@
-#chart
+#daily_balance_history
 
 javascript:
   var dailyBalanceHistory = #{@bank_account.daily_balance_history.to_json.html_safe};
 coffee:
-  chart = c3.generate
-    bindto: '#chart'
+  daily_balance_history = c3.generate
+    bindto: '#daily_balance_history'
     data:
       json: dailyBalanceHistory
       keys:
