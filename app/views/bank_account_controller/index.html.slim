@@ -1,7 +1,10 @@
 #daily_balance_history
+#monthly_expences_history
 
 javascript:
   var dailyBalanceHistory = #{@bank_account.daily_balance_history.to_json.html_safe};
+  var monthlyExpencesHistory = #{@bank_account.monthly_expences_history.to_json.html_safe};
+
 coffee:
   daily_balance_history = c3.generate
     bindto: '#daily_balance_history'
@@ -26,6 +29,36 @@ coffee:
     axis:
       y:
         label: '残高'
+        tick:
+          format: d3.format(',')
+        padding:
+          bottom: 0
+      x:
+        label: '日時'
+        type: 'timeseries'
+        tick:
+          rotate: 90
+          format: '%Y-%m-%d'
+
+   monthly_expences_history = c3.generate
+    bindto: '#monthly_expences_history'
+    data:
+      json: monthlyExpencesHistory
+      keys:
+        value: ['expences']
+        x: 'month'
+    size:
+      height: 720
+    grid:
+      x:
+        show: false
+      y:
+        show: true
+    point:
+      show: false
+    axis:
+      y:
+        label: '消費'
         tick:
           format: d3.format(',')
         padding:

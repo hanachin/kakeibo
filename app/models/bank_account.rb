@@ -21,4 +21,26 @@ class BankAccount
     end
     h
   end
+
+  def monthly_expences_history
+    history = daily_balance_history.map {|h| [h[:date], h[:amount]]}.to_h
+
+    start_at, end_at = history.keys.minmax
+    current_date = start_at.next_month
+    end_at = end_at.prev_month
+
+    h = []
+    while current_date <= end_at
+      bm = current_date.prev_month
+      em = current_date.end_of_month
+      s = Date.new(bm.year, bm.month, 24)
+      e = Date.new(em.year, em.month, 24)
+      month_range = s..e
+      min_date, max_date = month_range.minmax_by {|d| history[d] }
+      expences = history[max_date] - history[min_date]
+      h << {month: current_date.beginning_of_month, expences: expences}
+      current_date = current_date.next_month
+    end
+    h
+  end
 end
